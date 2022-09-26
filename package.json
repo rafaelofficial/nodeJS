@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "How to create a library in NodeJS",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
