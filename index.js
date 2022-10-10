@@ -1,7 +1,18 @@
+import fs from 'fs';
 import chalk from 'chalk';
 
-console.log(chalk.blue('Hello world!'));
+function handleError(error) {
+    throw new Error(chalk.red(error.code, 'The file was not found in that directory'));
+}
 
-console.log('Hello World');
-console.log(chalk.bgRedBright('Are generated received go to of a object [fileList](https://developer.mozialla.org/pt-BR/docs/Web/API/FileList) which is returned as selection result, by user, of files often of elements [<input>](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/Input), to go of object [DataTransfer](https://developer.mozilla.org/pt-BR/docs/Web/API'));
-console.log(chalk.blue.bgWhite.bold('Are generated received go to of a object [fileList](https://developer.mozialla.org/pt-BR/docs/Web/API/FileList)) which is returned as selection result, by user, of files often of elements [<input>](https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/Input), to go of object [DataTransfer](https://developer.mozilla.org/pt-BR/docs/Web/API'));
+function getFile(pathFile) {
+    const encoding = 'utf-8';
+    fs.readFile(pathFile, encoding, (error, text) => {
+        if (error) {
+            handleError(error);
+        }
+        console.log(chalk.green(text));
+    });
+}
+
+getFile('./files/text.md');
