@@ -15,10 +15,11 @@ async function getFile(pathFile) {
     try {
         const encoding = 'utf-8';
         const text = await fs.promises.readFile(pathFile, encoding);
-        console.log(extractLinks(chalk.green(text)));
+        const result = extractLinks(chalk.green(text));
+        return result.length !== 0 ? result : 'Link no exist in the file';
     } catch (error) {
         handleError(error);
     }
 }
 
-getFile('./files/text.md');
+export default getFile;
